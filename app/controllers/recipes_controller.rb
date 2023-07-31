@@ -5,6 +5,8 @@ class RecipesController < ApplicationController
     @recipes = current_user.recipes.order(created_at: :desc)
   end
 
+  def show; end
+
   def destroy
     if @recipe.destroy
       redirect_to(request.referrer || recipes_path, notice: "Recipe deleted successfully")
