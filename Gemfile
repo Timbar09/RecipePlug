@@ -69,3 +69,6 @@ end
 
 # Use RuboCop for code style analysis
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+# Authenticate users with devise
+gem 'devise'
