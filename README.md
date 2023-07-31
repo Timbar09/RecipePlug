@@ -1,4 +1,4 @@
-# Recipe App
+# RecipePlug
 
 <a name="readme-top"></a>
 
@@ -24,7 +24,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 Recipe App <a name="about-project"></a>
+# 📖 RecipePlug <a name="about-project"></a>
 
 > This app keeps track of all user recipes, ingredients, and inventory. It allows the user to save ingredients, keep track of what they have, create recipes, and generate a shopping list based on what the user has and what they are missing from a recipe. The app allows users to make the recipies public so that anyone can access them.
 
@@ -87,7 +87,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/Timbar09/Recipe-app.git
+  git clone https://github.com/Timbar09/RecipePlug.git
 ```
 
 ### Prerequisites
@@ -140,7 +140,7 @@ To run the project, execute the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Timbar09/Recipe-app/issues).
+Feel free to check the [issues page](https://github.com/Timbar09/RecipePlug/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
