@@ -2,7 +2,7 @@ class FoodsController < ApplicationController
   before_action :set_food, only: %i[show edit update destroy]
 
   def index
-    @foods = Food.all
+    @foods = Food.all.where(user_id: current_user.id)
 
     if params[:sort_by] == 'name'
       @sort_by = 'name'
