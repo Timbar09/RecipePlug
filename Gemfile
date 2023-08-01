@@ -54,6 +54,12 @@ gem 'bootstrap', '~> 5.2.3'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+
+  # Use rspec for testing
+  gem 'rspec-rails'
+
+  # Test controller-related functionality
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -65,6 +71,16 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+
+  # Use database cleaner to reset the database between tests
+  gem 'database_cleaner'
 end
 
 # Use RuboCop for code style analysis
