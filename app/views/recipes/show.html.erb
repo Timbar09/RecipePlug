@@ -1,3 +1,20 @@
-<div class="container">
-  <h1>Recipe details</h1>
-</div
+<div class='container'>
+  <header class='header'>
+    <h1><%= @recipe.name %></h1>
+
+    <%= render 'toggle_button', recipe: @recipe %>
+  </header>
+
+  <div class='content'>
+    <p class='prep-time'>Preparation time: <%= @recipe.preparation_time %></p>
+    <p class='cook-time'>Cooking time: <%= @recipe.cooking_time %></p>
+    <p class='description'><%= @recipe.description %></p>
+  </div>
+
+  <% if current_user == @recipe.user %>
+    <div class='actions'>
+      <%= link_to 'Generate shopping list'%>
+      <%= link_to 'Add ingredient' %>
+    </div>
+  <% end %>
+</div>

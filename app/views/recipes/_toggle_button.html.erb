@@ -1,0 +1,23 @@
+<%= form_for recipe, url: recipe_path(recipe), method: :put do |f| %>
+  <div class='actions toggle-link'>
+    <% if current_user == recipe.user %>
+      <% if recipe.public? %>
+        <%= f.hidden_field :public, value: false %>
+        <%= button_tag type: 'submit', class: 'toggle-submit' do %>
+          <span>Public</span>
+          <div class='toggle-box public'>
+            <div class='toggle'></div>
+          </div>
+        <% end %>
+      <% else %>
+        <%= f.hidden_field :public, value: true %>
+        <%= button_tag type: 'submit', class: 'toggle-submit' do %>
+          <span>Private</span>
+          <div class='toggle-box private'>
+            <div class='toggle'></div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

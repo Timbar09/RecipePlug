@@ -5,7 +5,14 @@ class RecipesController < ApplicationController
     @recipes = current_user.recipes.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    unless @recipe.public || @recipe.user == current_user
+      redirect_to recipes_path, alert: 'You do not have access to that recipe.'
+      return
+    end
+
+    @ingredients = RecipeFood.where(recipe: @recipe).includes(:food, :recipe)
+  end
 
   def destroy
     if @recipe.destroy
@@ -19,5 +26,9 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = current_user.recipes.find(params[:id])
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
 end
