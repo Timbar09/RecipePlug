@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :update, :destroy]
+  before_action :set_recipe, only: %i[show update destroy]
 
   def index
     @recipes = current_user.recipes.order(created_at: :desc)
@@ -9,9 +9,9 @@ class RecipesController < ApplicationController
 
   def destroy
     if @recipe.destroy
-      redirect_to(request.referrer || recipes_path, notice: "Recipe deleted successfully")
+      redirect_to(request.referrer || recipes_path, notice: 'Recipe deleted successfully')
     else
-      redirect_to(request.referrer || recipes_path, alert: "Error: Recipe could not be deleted")
+      redirect_to(request.referrer || recipes_path, alert: 'Error: Recipe could not be deleted')
     end
   end
 
