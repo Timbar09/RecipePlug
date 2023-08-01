@@ -14,6 +14,20 @@ class RecipesController < ApplicationController
     @ingredients = RecipeFood.where(recipe: @recipe).includes(:food, :recipe)
   end
 
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = current_user.recipes.new(recipe_params)
+
+    if @recipe.save
+      redirect_to recipe_path(@recipe), notice: 'Recipe created successfully.'
+    else
+      render :new, alert: 'Error: Recipe could not be created.'
+    end
+  end
+
   def destroy
     if @recipe.destroy
       redirect_to(request.referrer || recipes_path, notice: "Recipe deleted successfully")
