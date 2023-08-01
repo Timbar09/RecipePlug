@@ -1,0 +1,13 @@
+<li class="recipe_card border mb-3 p-3 d-flex">
+  <div class="recipe_card_left">
+    <h2 class="recipe_card_name m-0"><%= link_to recipe.name, recipe %></h2>
+
+    <% if recipe.owner == current_user %>
+      <%= button_to "Delete", recipe, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm mt-3" %>
+    <% end %>
+  </div>
+
+  <div class="recipe_card_right">
+    <p class="recipe_card_description"><%= recipe.description %></p>
+  </div>
+</li>
