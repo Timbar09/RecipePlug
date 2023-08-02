@@ -32,6 +32,15 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    if @recipe.update(recipe_params)
+      notice = @recipe.public ? 'Recipe is now public.' : 'Recipe is now private.'
+      redirect_to @recipe, notice: notice
+    else
+      redirect_to @recipe, alert: 'Failed to update recipe.'
+    end
+  end
+
   def destroy
     if @recipe.destroy
       redirect_to(request.referrer || recipes_path, notice: 'Recipe deleted successfully')
