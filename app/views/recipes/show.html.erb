@@ -1,8 +1,10 @@
 <div class='container'>
   <header class='row gap-3'>
-    <div class='col-12'>
-      <%= link_to 'Add Recipe +', new_recipe_path, class: 'btn btn-outline-success btn-sm col-auto' %>
-    </div>
+    <% if current_user == @recipe.user %>
+      <div class='col-12'>
+        <%= link_to 'Add Recipe +', new_recipe_path, class: 'btn btn-outline-success btn-sm col-auto' %>
+      </div>
+    <% end %>
 
     <div class='row col-12'>
       <h1 class='col'><%= @recipe.name %></h1>
@@ -16,8 +18,10 @@
   </header>
 
   <div class='p-2 bg-light'>
-    <p class='prep-time'>Preparation time: <%= @recipe.preparation_time / 60 %>.<%= @recipe.preparation_time % 60 %> hours</p>
-    <p class='cook-time'>Cooking time: <%= @recipe.cooking_time / 60 %>.<%= @recipe.cooking_time % 60 %> hours</p>
+    <p class='prep-time'>Preparation time: <%= pluralize("#{ @recipe.preparation_time / 60 }.#{@recipe.preparation_time % 60}",
+      'hour') %></p>
+    <p class='cook-time'>Cooking time: <%= pluralize("#{ @recipe.cooking_time / 60 }.
+      #{@recipe.cooking_time % 60}", 'hour') %></p>
     <p class='description'><%= @recipe.description %></p>
   </div>
 

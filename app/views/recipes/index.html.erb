@@ -1,7 +1,7 @@
 <div class="container">
-  <ul class="recipe_list">
+  <ul class="list-unstyled w-75 mx-auto">
     <% if @recipes.empty? %>
-      <li>No recipes yet. Why not <%= link_to 'add one', new_recipe_path %>?</li>
+      <li class="text-center">No recipes yet. Why not <%= link_to 'add one', new_recipe_path %>?</li>
     <% end %>
     
     <% @recipes.each do |recipe| %>
