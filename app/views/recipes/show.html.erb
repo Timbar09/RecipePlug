@@ -20,8 +20,7 @@
   <div class='p-2 bg-light'>
     <p class='prep-time'>Preparation time: <%= pluralize("#{ @recipe.preparation_time / 60 }.#{@recipe.preparation_time % 60}",
       'hour') %></p>
-    <p class='cook-time'>Cooking time: <%= pluralize("#{ @recipe.cooking_time / 60 }.
-      #{@recipe.cooking_time % 60}", 'hour') %></p>
+    <p class='cook-time'>Cooking time: <%= pluralize("#{ @recipe.cooking_time / 60 }.#{@recipe.cooking_time % 60}", 'hour') %></p>
     <p class='description'><%= @recipe.description %></p>
   </div>
 
