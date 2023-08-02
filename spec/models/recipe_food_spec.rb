@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe RecipeFood, type: :model do
   describe 'creation' do
     before :each do
-       @user = User.create(name: 'John Doe', email: 'john.doe@mail.com', password: 'password')
-      
+      @user = User.create(name: 'John Doe', email: 'john.doe@mail.com', password: 'password')
+
       @food = Food.create(name: 'Chicken', quantity: 4, price: 24.95, measurement_unit: 'lbs', user: @user)
-      @recipe = Recipe.create(name: 'Chicken Parmesan', preparation_time: 10, cooking_time: 30, description: 'This is a description', user: @user)
+      @recipe = Recipe.create(name: 'Chicken Parmesan', preparation_time: 10, cooking_time: 30,
+                              description: 'This is a description', user: @user)
       @recipe_food = RecipeFood.create(recipe: @recipe, food: @food, quantity: 2)
     end
 

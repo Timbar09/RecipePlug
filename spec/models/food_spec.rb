@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Food, type: :model do
   describe 'creation' do
     before :each do
-       @user = User.create(name: 'John Doe', email: 'john.doe@mail.com', password: 'password')
-      
+      @user = User.create(name: 'John Doe', email: 'john.doe@mail.com', password: 'password')
+
       @food = Food.create(name: 'Chicken', quantity: 1, price: 1.99, measurement_unit: 'lbs', user: @user)
     end
 
@@ -51,5 +51,5 @@ RSpec.describe Food, type: :model do
       @food.user = nil
       expect(@food).to_not be_valid
     end
-  end  
+  end
 end

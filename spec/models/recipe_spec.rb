@@ -4,7 +4,7 @@ RSpec.describe Recipe, type: :model do
   describe 'creation' do
     before :each do
       @user = User.create(name: 'John Doe', email: 'john.doe@mail.com', password: 'password')
-      
+
       @recipe = Recipe.create(name: 'Chicken Parmesan', preparation_time: 10, cooking_time: 30,
                               description: 'This is a description', user: @user)
     end

@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Recipes#index', type: :system, js: true do
   before :all do
     @user = User.create(name: 'Test User', email: 'user@mail.com', password: 'password')
-    @recipe = Recipe.create(name: 'Test Recipe', preparation_time: 10, cooking_time: 10, description: 'Test Description', user: @user)
-    @recipe2 = Recipe.create(name: 'Test Recipe 2', preparation_time: 10, cooking_time: 10, description: 'Test Description', user: @user)
+    @recipe = Recipe.create(name: 'Test Recipe', preparation_time: 10, cooking_time: 10,
+                            description: 'Test Description', user: @user)
+    @recipe2 = Recipe.create(name: 'Test Recipe 2', preparation_time: 10, cooking_time: 10,
+                             description: 'Test Description', user: @user)
   end
 
   before :each do
@@ -15,7 +17,7 @@ RSpec.describe 'Recipes#index', type: :system, js: true do
 
     visit recipes_path
   end
-  
+
   it 'shows the recipe cards information' do
     expect(page).to have_content(@recipe.name)
     expect(page).to have_content(@recipe2.name)

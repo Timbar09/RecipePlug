@@ -6,11 +6,11 @@ class RecipesController < ApplicationController
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: true).includes(:user, :recipe_foods => :food).order(created_at: :desc)
+    @recipes = Recipe.where(public: true).includes(:user, recipe_foods: :food).order(created_at: :desc)
   end
 
   def show
-    @recipe = Recipe.includes(:recipe_foods => :food).find(params[:id])
+    @recipe = Recipe.includes(recipe_foods: :food).find(params[:id])
 
     unless @recipe.public || @recipe.user == current_user
       redirect_to recipes_path, alert: 'You do not have access to that recipe.'
@@ -76,10 +76,6 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
-  end
-
-  def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
 
   def recipe_params

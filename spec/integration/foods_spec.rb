@@ -15,7 +15,7 @@ RSpec.describe 'Foods', type: :system, js: true do
 
     visit foods_path
   end
-  
+
   it 'shows the food page information' do
     expect(page).to have_content('Banana')
     expect(page).to have_content('Apple')
