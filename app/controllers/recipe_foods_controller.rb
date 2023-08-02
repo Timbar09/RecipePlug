@@ -1,6 +1,6 @@
 class RecipeFoodsController < ApplicationController
-  before_action :set_recipe, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_ingredient, only: [:edit, :update, :destroy]
+  before_action :set_recipe, only: %i[new create edit update destroy]
+  before_action :set_ingredient, only: %i[edit update destroy]
 
   def new
     @ingredient = RecipeFood.new
