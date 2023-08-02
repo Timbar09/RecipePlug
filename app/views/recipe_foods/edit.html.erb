@@ -1,0 +1,5 @@
+<div class='container'>
+  <h1>Modify ingredient</h1>
+
+  <%= render 'form', recipe: @recipe, ingredient: @ingredient, url: recipe_recipe_food_path(@recipe, @ingredient), method: :patch, btnName: 'Modify ingredient' %>
+</div>

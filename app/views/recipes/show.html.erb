@@ -1,3 +1,50 @@
-<div class="container">
-  <h1>Recipe details</h1>
-</div
+<div class='container'>
+  <header class='row'>
+    <h1 class='col'><%= @recipe.name %></h1>
+
+    <%= render 'toggle_button', recipe: @recipe %>
+  </header>
+
+  <div class='content'>
+    <p class='prep-time'>Preparation time: <%= @recipe.preparation_time / 60 %>.<%= @recipe.preparation_time % 60 %> hours</p>
+    <p class='cook-time'>Cooking time: <%= @recipe.cooking_time / 60 %>.<%= @recipe.cooking_time % 60 %> hours</p>
+    <p class='description'><%= @recipe.description %></p>
+  </div>
+
+  <% if current_user == @recipe.user %>
+    <div class='row p-3 justify-content-between border-bottom'>
+      <%= link_to 'Generate shopping list', shopping_list_recipes_path(@recipe), class: 'btn btn-primary btn-md col-auto' %>
+      <%= link_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), class: 'btn btn-primary btn-md col-auto' %>
+    </div>
+  <% end %>
+
+  <% if @recipe.recipe_foods.length > 0 %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Value</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ingredients.each do |ingredient| %>
+            <tr>
+              <td><%= ingredient.food.name %></td>
+              <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %></td>
+              <td>$<%= ingredient.quantity * ingredient.food.price %></td>
+              <td>
+                <% if current_user == @recipe.user %>
+                  <div class='row gap-1'>
+                    <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, ingredient), class: 'col-auto' %>
+                    <%= link_to 'Delete', recipe_recipe_food_path(@recipe, ingredient), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: 'col-auto' %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+</div>
