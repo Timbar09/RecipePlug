@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "pages#home"
+  root "recipes#public_recipes"
 
   resources :recipes, except: [:edit] do
     collection do
