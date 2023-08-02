@@ -47,8 +47,8 @@
               <td>
                 <% if current_user == @recipe.user %>
                   <div class='row gap-1'>
-                    <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, ingredient), class: 'col-auto' %>
-                    <%= link_to 'Delete', recipe_recipe_food_path(@recipe, ingredient), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: 'col-auto' %>
+                    <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, ingredient), class: 'col-auto btn btn-outline-primary btn-sm' %>
+                    <%= link_to 'Delete', recipe_recipe_food_path(@recipe, ingredient), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: 'col-auto btn btn-outline-danger btn-sm' %>
                   </div>
                 <% end %>
               </td>
