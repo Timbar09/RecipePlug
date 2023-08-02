@@ -38,11 +38,12 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-    @food.destroy
-
-    respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
-      format.json { head :no_content }
+    if @food.recipe_foods.any?
+      redirect_to foods_url, alert: 'Food is associated with a recipe and cannot be destroyed.'
+    elsif @food.destroy
+      redirect_to foods_url, notice: 'Food was successfully destroyed.'
+    else
+      redirect_to foods_url, alert: 'Error: Food was not destroyed.'
     end
   end
 
