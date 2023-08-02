@@ -1,3 +1,35 @@
+<style>
+  .toggle-submit {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .toggle-submit .toggle-box {
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    border-radius: 1em;
+    border: 1px solid #ccc;
+    padding: 0.2em;
+  }
+
+  .toggle-submit .toggle {
+    height: 1.4em;
+    width: 1.4em;
+    background-color: #ccc;
+    border-radius: inherit;
+  }
+
+  .toggle-submit .toggle-box.public .toggle {
+    margin-left: auto;
+    background-color: #59d102;
+  }
+</style>
+
 <%= form_for recipe, url: recipe_path(recipe), method: :put do |f| %>
   <div class='actions toggle-link'>
     <% if current_user == recipe.user %>
@@ -13,7 +45,7 @@
         <%= f.hidden_field :public, value: true %>
         <%= button_tag type: 'submit', class: 'toggle-submit' do %>
           <span>Private</span>
-          <div class='toggle-box private'>
+          <div class='toggle-box'>
             <div class='toggle'></div>
           </div>
         <% end %>
