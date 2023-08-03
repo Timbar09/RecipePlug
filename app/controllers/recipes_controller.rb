@@ -1,15 +1,17 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show update destroy]
+  before_action :set_recipe, only: %i[update destroy]
 
   def index
     @recipes = current_user.recipes.order(created_at: :desc)
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: true).order(created_at: :desc)
+    @recipes = Recipe.where(public: true).includes(:user, recipe_foods: :food).order(created_at: :desc)
   end
 
   def show
+    @recipe = Recipe.includes(recipe_foods: :food).find(params[:id])
+
     unless @recipe.public || @recipe.user == current_user
       redirect_to recipes_path, alert: 'You do not have access to that recipe.'
       return

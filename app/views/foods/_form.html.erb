@@ -9,31 +9,31 @@
     </ul>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", autofocus: true, placeholder: "e.g. Chicken" %>
   </div>
 
-  <div>
-    <%= form.label :measurement_unit, style: "display: block" %>
-    <%= form.text_field :measurement_unit %>
+  <div class="form-group mb-3">
+    <%= form.label :measurement_unit %>
+    <%= form.text_field :measurement_unit, class: "form-control", placeholder: "e.g. lbs" %>
   </div>
 
-  <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity, step: 1, min: 1 %>
+  <div class="form-group mb-3">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, step: 1, min: 1, class: "form-control", placeholder: "e.g. 1" %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+  <div class="form-group mb-3">
+    <%= form.label :price, "Unit price" %>
+    <%= form.number_field :price, step: 0.01, min: 0, class: "form-control", placeholder: "e.g. 1.99" %>
   </div>
   
-  <div>
+  <div class="form-group mb-3">
     <%= form.hidden_field :user_id  %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit "Add food", class: "btn btn-primary mt-3" %>
   </div>
 <% end %>

@@ -1,13 +1,27 @@
 <%= form_with model: [recipe, @ingredient], url: url, method: method do |f| %>
-    <div class="field">
-      <%= f.label :food_id, 'Food' %>
-      <%= f.collection_select :food_id, current_user.foods, :id, :name, {prompt: 'Select food item'} %>
-    </div>
+  <% if @ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
 
-    <div class="field">
-      <%= f.label :quantity %>
-      <%= f.number_field :quantity %>
+      <ul>
+        <% @ingredient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-
-    <%= f.submit btnName, class: 'btn btn-primary' %>
   <% end %>
+  
+  <div class="form-group mb-3">
+    <%= f.label :food_id, 'Food' %>
+    <%= f.collection_select :food_id, current_user.foods, :id, :name, {prompt: 'Select food item'}, {class: 'form-control'} %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit btnName, class: 'btn btn-primary' %>
+  </div>
+<% end %>
