@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Foods', type: :system, js: true do
-  before :all do
+  before :each do
     @user = User.create(name: 'Test User', email: 'user@mail.com', password: 'password')
     @banana = Food.create(name: 'Banana', measurement_unit: 'g', price: 0.10, quantity: 100, user: @user)
     @apple = Food.create(name: 'Apple', measurement_unit: 'units', price: 0.20, quantity: 100, user: @user)
-  end
 
-  before :each do
     visit new_user_session_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'password'

@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Recipes#show', type: :system, js: true do
-  before :all do
+  before :each do
     @user = User.create(name: 'Test User', email: 'user@mail.com', password: 'password')
     @recipe = Recipe.create(name: 'Test Recipe', preparation_time: 10, cooking_time: 10,
                             description: 'Test Description', user: @user)
-  end
 
-  before :each do
     visit new_user_session_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'password'
