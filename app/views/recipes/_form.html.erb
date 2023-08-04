@@ -1,0 +1,34 @@
+<%= form_for recipe do |f| %>
+    <div class='content'>
+      <div class='form-group mb-3'>
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'e.g. Delicious meal', autofocus: true, class: 'form-control' %>
+      </div>
+  
+      <div class='form-group mb-3'>
+        <%= f.label :description %>
+        <%= f.text_area :description, placeholder: 'e.g. This is a recipe for a delicious meal', class: 'form-control' %>
+      </div>
+  
+      <div class='form-group mb-3'>
+        <%= f.label :preparation_time %>
+        <%= f.text_field :preparation_time, placeholder: 'e.g. 10', class: 'form-control' %>
+        <small id="emailHelp" class="form-text text-muted">Please enter the preparation time in minutes.</small>
+      </div>
+  
+      <div class='form-group mb-3'>
+        <%= f.label :cooking_time %>
+        <%= f.text_field :cooking_time, placeholder: 'e.g. 20', class: 'form-control' %>
+        <small id="emailHelp" class="form-text text-muted">Please enter the cooking time in minutes.</small>
+      </div>
+  
+      <div class='form-check mb-3'>
+        <%= f.label :public %>
+        <%= f.check_box :public, class: 'form-check-input' %>
+      </div>
+    </div>
+  
+    <div class='actions'>
+      <%= f.submit 'Add recipe', data: { disable_with: 'Adding recipe...' }, class: 'btn btn-primary' %>
+    </div>
+  <% end %>

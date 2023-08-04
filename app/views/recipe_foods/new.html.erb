@@ -1,0 +1,5 @@
+<div class='container'>
+  <h1 class='text-center'>Add ingredient</h1>
+
+  <%= render 'form', recipe: @recipe, ingredient: @ingredient, url: recipe_recipe_foods_path(@recipe), method: :post, btnName: 'Add ingredient' %>
+</div>

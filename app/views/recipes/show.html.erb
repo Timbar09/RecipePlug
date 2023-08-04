@@ -1,0 +1,63 @@
+<div class='container'>
+  <header class='row gap-3'>
+    <% if current_user == @recipe.user %>
+      <div class='col-12'>
+        <%= link_to 'Add Recipe +', new_recipe_path, class: 'btn btn-outline-success btn-sm col-auto' %>
+      </div>
+    <% end %>
+
+    <div class='row col-12'>
+      <h1 class='col'><%= @recipe.name %></h1>
+
+      <div class='col-auto'>
+        <% if current_user == @recipe.user %>
+          <%= render 'toggle_button', recipe: @recipe %>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <div class='p-2 bg-light'>
+    <p class='prep-time'>Preparation time: <%= pluralize("#{ @recipe.preparation_time / 60 }.#{@recipe.preparation_time % 60}",
+      'hour') %></p>
+    <p class='cook-time'>Cooking time: <%= pluralize("#{ @recipe.cooking_time / 60 }.#{@recipe.cooking_time % 60}", 'hour') %></p>
+    <p class='description'><%= @recipe.description %></p>
+  </div>
+
+  <% if current_user == @recipe.user %>
+    <div class='row p-3 justify-content-between border-bottom'>
+      <%= link_to 'Generate shopping list', shopping_list_recipes_path(@recipe), class: 'btn btn-primary btn-md col-auto' %>
+      <%= link_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), class: 'btn btn-primary btn-md col-auto' %>
+    </div>
+  <% end %>
+
+  <% if @recipe.recipe_foods.length > 0 %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Value</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ingredients.each do |ingredient| %>
+            <tr>
+              <td><%= ingredient.food.name %></td>
+              <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %></td>
+              <td>$<%= ingredient.quantity * ingredient.food.price %></td>
+              <td>
+                <% if current_user == @recipe.user %>
+                  <div class='row gap-1'>
+                    <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe, ingredient), class: 'col-auto btn btn-outline-primary btn-sm' %>
+                    <%= link_to 'Delete', recipe_recipe_food_path(@recipe, ingredient), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: 'col-auto btn btn-outline-danger btn-sm' %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+</div>

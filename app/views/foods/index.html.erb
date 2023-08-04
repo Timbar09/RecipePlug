@@ -1,0 +1,30 @@
+<div class="container">
+  <p class="row justify-content-end">
+    <%= link_to "New food +", new_food_path, class: "col-auto btn btn-outline-success btn-sm" %>
+  </p>
+
+  <table id="foods" class="table table-hover">
+    <thead>
+      <tr>
+      <th class="arrow-flex"> Food <%= link_to raw("&#9660;"), sort_by: "name", direction: (@sort_by == "name" && @direction == "asc" ? "desc" : "asc"), class: "arrow-icon" %></th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Measurement Unit</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food.quantity %></td>
+          <td><%= food.measurement_unit %></td>
+          <td>$<%= food.price %></td>
+          <td>
+          <%= link_to "Delete", food_path(food), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "btn btn-outline-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
