@@ -6,12 +6,11 @@ RSpec.describe 'Foods', type: :system, js: true do
     @banana = Food.create(name: 'Banana', measurement_unit: 'g', price: 0.10, quantity: 100, user: @user)
     @apple = Food.create(name: 'Apple', measurement_unit: 'units', price: 0.20, quantity: 100, user: @user)
 
-    visit new_user_session_path
+    visit foods_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    visit foods_path
   end
 
   it 'shows the food page information' do

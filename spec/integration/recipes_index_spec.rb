@@ -8,12 +8,11 @@ RSpec.describe 'Recipes#index', type: :system, js: true do
     @recipe2 = Recipe.create(name: 'Test Recipe 2', preparation_time: 10, cooking_time: 10,
                              description: 'Test Description', user: @user)
 
-    visit new_user_session_path
+    visit recipes_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    visit recipes_path
   end
 
   it 'shows the recipe cards information' do

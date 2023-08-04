@@ -6,12 +6,11 @@ RSpec.describe 'Recipes#show', type: :system, js: true do
     @recipe = Recipe.create(name: 'Test Recipe', preparation_time: 10, cooking_time: 10,
                             description: 'Test Description', user: @user)
 
-    visit new_user_session_path
+    visit recipe_path(@recipe)
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    visit recipe_path(@recipe)
   end
 
   it 'shows the recipe details information' do
