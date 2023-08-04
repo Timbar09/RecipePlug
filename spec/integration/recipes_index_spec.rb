@@ -12,7 +12,6 @@ RSpec.describe 'Recipes#index', type: :system, js: true do
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
-
   end
 
   it 'shows the recipe cards information' do
